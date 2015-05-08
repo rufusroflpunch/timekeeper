@@ -25,6 +25,7 @@ class Block
   property :category   , String
   property :start_time , DateTime
   property :end_time   , DateTime
+  property :duration   , Float
   property :note       , Text
 end
 

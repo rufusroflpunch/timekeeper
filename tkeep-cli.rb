@@ -42,7 +42,8 @@ while (true)
         category: @command,
         note: @note,
         start_time: @start_time,
-        end_time: Time.now
+        end_time: Time.now,
+        duration: Time.now - @start_time
       )
     end
 
@@ -73,7 +74,8 @@ while (true)
       category: @command,
       note: @note,
       start_time: @start_time,
-      end_time: Time.now
+      end_time: Time.now,
+      duration: Time.now - @start_time
     )
 
     @command = command
