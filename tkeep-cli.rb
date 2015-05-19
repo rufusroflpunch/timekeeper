@@ -19,6 +19,8 @@ def print_help
   puts "    This will return the duration for all categories in the given timeframe. If no arguments"
   puts "    are specified, then it uses all recorded times. If a start date is specified, the present"
   puts "    is used for end time. Date parsing is flexible, but recommended format is YYYY-MM-DD."
+  puts ".report-cat <category> [start time] [end time]"
+  puts "    This will report the duration for a specific category, inside an optional timeframe."
   puts
   puts "NOTE: You can save a note with the category by typing '; ' after the category."
   puts "For example: "
@@ -77,6 +79,8 @@ while (true)
   end
 
   report_cmd = command.split
+
+  # Checking for command .report-all and process
   if report_cmd[0] == ".report-all"
     # If there is no arguments, select all
     if report_cmd.size == 1
@@ -104,6 +108,32 @@ while (true)
     all_reports.each do |k,v|
       puts "#{k} => #{v.to_duration}"
     end
+    puts
+    next
+  end
+
+  # Check for .report-cat command and process
+  if report_cmd[0] == ".report-cat"
+    if report_cmd.size == 2
+      blocks = Block.all(:category.like => report_cmd[1].capitalize)
+    elsif report_cmd.size == 3
+      blocks = Block.all(:category.like => report_cmd[1].capitalize,
+                         :start_time.gte => Date.parse(report_cmd[2]).to_time)
+    elsif report_cmd.size == 4
+      blocks = Block.all(:category.like => report_cmd[1].capitalize,
+                         :start_time.gte => Date.parse(report_cmd[2]).to_time,
+                         :end_time.lte => Date.parse(report_cmd[3]).to_time)
+    end
+
+    # Tally up the duration
+    duration = 0.0
+    blocks.each do |b|
+      duration += b.duration
+    end
+
+    # Output the final count
+    puts "Total Duration: " + duration.to_duration
+
     puts
     next
   end
