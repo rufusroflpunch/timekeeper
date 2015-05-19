@@ -1,7 +1,7 @@
 require 'data_mapper'
 
 TKEEP_MAJ_VER = 0
-TKEEP_MIN_VER = 1
+TKEEP_MIN_VER = 2
 
 # Check for local folder to store config data
 local_folder = Dir.home + '/.tkeep'
