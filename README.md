@@ -1,4 +1,4 @@
-# TimeKeeper v0.1
+# TimeKeeper v0.2
 
 ## Introduction
 
