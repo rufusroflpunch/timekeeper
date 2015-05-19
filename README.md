@@ -12,7 +12,7 @@ Execute the script `tkeep-lib.rb` and you will be presented with this prompt. Ju
 help information:
 
 ```
-Welcome to the TimeKeeper CLI interface, version 0.1.
+Welcome to the TimeKeeper CLI interface, version 0.2.
 
 Usage: Enter a category to begin. This will start recording time for that category. Entering a new category will save the current one to the database and immediately begin a new one.
 
@@ -24,6 +24,8 @@ Usage: Enter a category to begin. This will start recording time for that catego
     This will return the duration for all categories in the given timeframe. If no arguments
     are specified, then it uses all recorded times. If a start date is specified, the present
     is used for end time. Date parsing is flexible, but recommended format is YYYY-MM-DD.
+.report-cat <category> [start time] [end time]
+    This will report the duration for a specific category, inside an optional timeframe.
 
 NOTE: You can save a note with the category by typing '; ' after the category.
 For example: 
